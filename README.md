@@ -41,3 +41,6 @@ In Plugin.cs\
  Also good to know but idk where to put it in this readme so it goes here\
  The FodyWeavers.xml file can be used to build other packages into your mod .dll, so everything can be in 1 file with no dependencies\
  I'm not 100% sure how it works when there could be conflicts.
+
+
+Feel free to check out some of [My other mods](https://docs.google.com/spreadsheets/d/1fuAAfK-0Vw74TwxXF5WVy1fh1ADsVzUkDd7dOHc7EdQ) if you want mod references
