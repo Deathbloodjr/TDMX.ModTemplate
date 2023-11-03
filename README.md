@@ -1,4 +1,8 @@
 # TdmxModTemplate
+| Mono | IL2CPP |
+|:--:|:--:|
+|✅|✅|
+
  A template for creating mods for TDMX.
 
 # Requirements
