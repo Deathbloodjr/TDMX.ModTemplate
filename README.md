@@ -1,4 +1,4 @@
-# TdmxModTemplate
+# TDMX.ModTemplate
 | Mono | IL2CPP |
 |:--:|:--:|
 |✅|✅|
@@ -10,43 +10,65 @@
  A 1.3.0+ version of the game to compile IL2CPP versions, Mono is buildable without any version of the game.
 
 # How to use
-Download the source code.\
-Change a few instances of "TdmxModTemplate" to whatever you will name your mod <ModName>\
-That would be:
-- The main directory of this
-- TdmxModTemplate.sln
-   - Also open the .sln file in a text editor to change "TdmxModTemplate", "TdmxModTemplate\TdmxModTemplate.csproj", replacing TdmxModTemplate with <ModName>
-- TdmxModTemplate folder
-- Within that folder, TdmxModTemplate.csproj
+ On github, click the "Use this template" button -> Create a new repository\
+ Give a Repository name\
+ Select Private or Public repository\
+ Clone the repo locally
 
-Now open the solution itself\
-In the .csproj file (double click the <ModName> project in solution explorer)\
-- Change AssemblyName to com.<YourName>.<ModName>
-- Change the description to whatever your mod does (Or remember to do this later)
-- Change RootNamespace and PackageId to ModName
-- Change PackageVersion to a fitting version in the format of x.x.x (or whatever your preference is)
-- If you plan on building this for IL2CPP
-   - Toward the top, there should be a section for 'Release-IL2CPP' and for 'Debug-IL2CPP'
-   - Under these, set the GameDir to your IL2CPP Taiko build location
+ Change a few instances of "ModTemplate" to whatever you will name your mod <ModName>\
+ That would be:
+ - The main directory of this
+ - ModTemplate.sln
+    - Also open the .sln file in a text editor to change "ModTemplate", "ModTemplate\ModTemplate.csproj", replacing ModTemplate with <ModName>
+ - ModTemplate folder
+ - Within that folder, ModTemplate.csproj
 
-In Plugin.cs\
-- Change the namespace to what you selected as RootNamespace earlier
-   - You can change the namespaces in the 2 example patches as well, to RootNamespace.Patches
-- Change ModName to your ModName
+ Now open the solution itself\
+ In the .csproj file (double click the <ModName> project in solution explorer)\
+ Everything you'd need to change will be in the first PropertyGroup at the top.
+ - Change AuthorName to your name
+   - This will be reflected in the resulting dll name
+   - For example, my dlls end up looking like "com.DB.TDMX.SingleHitBigNotes"
+   - Your name will be in place of "DB"
+ - Change ModName to your ModName
+ - Change ModVersion to a fitting version in the format of x.x.x (or whatever your preference is)
+ - Change Description to whatever your mod does (Or remember to do this later)
 
- If this is your first mod, you'll need to set up your NuGet Package source to include BepInEx.\
- - Go to Project at the top -> Manage NuGet Packages...
- - Click the gear at the top right next to Package source: 
- - Click the plus, change the name to BepInEx, and set the source to "https://nuget.bepinex.dev/v3/index.json"
+In Plugin.cs
+ - Change the namespace to what you selected as RootNamespace earlier
+    - In Visual Studio, you can highlight the namespace, hit Ctrl + R, Ctrl + R, and enter your new namespace to change all instances of it. 
+    - You can change the namespaces in the 2 example patches as well, to RootNamespace.Patches
+ - Change public const string ModName = your ModName
 
- Now you should be good to start coding!\
- Just add whatever files you want to the Patches folder, and remove my example patches before releasing.
+ At this point, build the project, and it should have some errors
+ - Return to File Explorer and open the .csproj.user file
+ - Put your TDMX game install directory in GameDir
+
+You project should now be in a buildable state
  
- Also good to know but idk where to put it in this readme so it goes here\
- The FodyWeavers.xml file can be used to build other packages into your mod .dll, so everything can be in 1 file with no dependencies\
- I'm not 100% sure how it works when there could be conflicts.
+ Outside of code, edit the README.md file
+ - Change TDMX.ModTemplate to your mod's name
+ - Change the description.
+ - Delete this "#How to use" section
+ - Make any other changes you feel like making
+
+# Build
+ Attempt to build the project, or copy the .csproj.user file from the Resources file to the same directory as the .csproj file.\
+ Edit the .csproj.user file and place your Rhythm Festival file location in the "GameDir" variable.
+
+Add BepInEx as a nuget package source (https://nuget.bepinex.dev/v3/index.json)
 
 
-Feel free to check out some of [My other mods](https://docs.google.com/spreadsheets/d/1fuAAfK-0Vw74TwxXF5WVy1fh1ADsVzUkDd7dOHc7EdQ) if you want mod references\
-Also feel free to ask me directly in [my Taiko Discord Server](https://discord.gg/6Bjf2xP)
+## Mono
+ Install the latest version of [BepInEx 5.x.x](https://github.com/BepInEx/BepInEx/releases) into your TDMX v1.2.2 directory and launch the game.\
+ Make sure you install the BepInEx_win_x64 version.
+
+
+## IL2CPP
+ Install [BepInEx 6.0.0-pre.2](https://github.com/BepInEx/BepInEx/releases/tag/v6.0.0-pre.2) into your TDMX v1.3.0+ directory and launch the game.\
+ This will generate all the dummy dlls in the interop folder that will be used as references.\
+ Make sure you install the Unity.IL2CPP-win-x64 version.\
+ Newer versions of BepInEx could have breaking API changes until the first stable v6 release, so those are not recommended at this time.
+ 
+
 

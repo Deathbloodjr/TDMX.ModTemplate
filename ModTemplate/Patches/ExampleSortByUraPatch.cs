@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TdmxModTemplate.Patches
+namespace ModTemplate.Patches
 {
     internal class ExampleSortByUraPatch
     {
