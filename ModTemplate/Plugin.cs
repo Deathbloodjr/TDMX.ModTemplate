@@ -115,9 +115,7 @@ namespace ModTemplate
             try
             {
                 _harmony.PatchAll(type);
-#if DEBUG
-                ModLogger.Log("File patched: " + type.FullName);
-#endif
+                ModLogger.Log("File patched: " + type.FullName, LogType.Debug);
                 return true;
             }
             catch (Exception e)
