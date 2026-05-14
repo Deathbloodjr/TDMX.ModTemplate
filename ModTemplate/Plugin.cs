@@ -49,7 +49,6 @@ namespace ModTemplate
             SetupConfig(Config, Path.Combine("BepInEx", "data", ModName));
             SetupHarmony();
 
-
             var isSaveManagerLoaded = IsSaveManagerLoaded();
             if (isSaveManagerLoaded)
             {
@@ -80,6 +79,8 @@ namespace ModTemplate
             LoadPlugin(ConfigEnabled.Value);
         }
 
+        // For going from a profile that doesn't have this mod enabled, to a profile that does have this mod enabled
+        // Or, first startup
         public static void LoadPlugin(bool enabled)
         {
             if (enabled)
@@ -96,7 +97,6 @@ namespace ModTemplate
                 {
                     ModLogger.Log($"Plugin {MyPluginInfo.PLUGIN_GUID} failed to load.", LogType.Error);
                     // Unload this instance of Harmony
-                    // I hope this works the way I think it does
                     Instance._harmony.UnpatchSelf();
                 }
             }
@@ -126,12 +126,14 @@ namespace ModTemplate
             }
         }
 
+        // For going from a profile that has this mod enabled, to a profile that doesn't have this mod enabled
         public static void UnloadPlugin()
         {
             Instance._harmony.UnpatchSelf();
             ModLogger.Log($"Plugin {MyPluginInfo.PLUGIN_NAME} has been unpatched.");
         }
 
+        // For going from one profile that has this mod enabled, to a different mod that has this mod enabled
         public static void ReloadPlugin()
         {
             // Reloading will always be completely different per mod

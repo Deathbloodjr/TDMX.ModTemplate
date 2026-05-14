@@ -42,8 +42,6 @@ namespace ModTemplate
                     Plugin.Log.LogMessage(value);
                     break;
                 case LogType.Debug:
-                    // I don't fully understand how Log.LogDebug works
-                    // This is simpler for me
 #if DEBUG
                     Plugin.Log.LogInfo(value);
 #else
