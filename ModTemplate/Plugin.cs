@@ -156,8 +156,8 @@ namespace ModTemplate
             // If there's nothing to reload, don't put anything here, and keep it commented in AddToSaveManager
             //plugin.AssignReloadSaveFunction(ReloadPlugin);
 
-            // Uncomment this if there are more config options than just ConfigEnabled
-            //plugin.AssignConfigSetupFunction(SetupConfig);
+            // Comment this if the only config option is ConfigEnabled
+            plugin.AssignConfigSetupFunction(SetupConfig);
             plugin.AddToManager(ConfigEnabled.Value);
         }
 
